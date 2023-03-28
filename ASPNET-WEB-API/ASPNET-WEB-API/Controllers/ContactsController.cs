@@ -14,6 +14,7 @@ namespace ASPNET_WEB_API.Controllers
         {
             this.dbContext = dbContext;            
         }
+
         [HttpGet]
         public async Task<IActionResult> GetContacts()
         {
@@ -35,6 +36,25 @@ namespace ASPNET_WEB_API.Controllers
             await dbContext.Contacts.AddAsync(contact);
             await dbContext.SaveChangesAsync();
             return Ok(contact);
+        }
+
+        [HttpPut]
+        [Route ("{id:guid}")]
+        public async Task<IActionResult> UpdateContact([FromRoute] Guid id, UpdateContactRequest updateContactRequest)
+        {
+            var contact = await dbContext.Contacts.FindAsync(id);
+            if(contact != null)
+            {
+                contact.Name = updateContactRequest.Name;
+                contact.Address = updateContactRequest.Address;
+                contact.Phone = updateContactRequest.Phone;
+                contact.Email = updateContactRequest.Email;
+
+                await dbContext.SaveChangesAsync();
+
+                return Ok(contact);
+            }
+            return NotFound();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ASPNET_WEB_API.Models
 {
-    public class AddContactRequest
+    public class UpdateContactRequest
     {
         public string Name { get; set; }
 
@@ -11,4 +11,3 @@
         public string Address { get; set; }
     }
 }
- 
