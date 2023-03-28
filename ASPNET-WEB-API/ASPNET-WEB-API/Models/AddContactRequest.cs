@@ -1,9 +1,7 @@
 ﻿namespace ASPNET_WEB_API.Models
 {
-    public class Contact
+    public class AddContactRequest
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
         public string Email { get; set; }
